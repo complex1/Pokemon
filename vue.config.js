@@ -1,7 +1,7 @@
 const path = require("path")
 module.exports = {
   configureWebpack: {
-    entry: path.resolve(__dirname, 'client/main/main.js'),
+    entry: path.resolve(__dirname, 'src/client/main/main.js'),
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src/client/main/'),

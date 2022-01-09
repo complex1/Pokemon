@@ -8,6 +8,11 @@ const RequestLogger = require('express-bunyan-logger')({
     }]
 })
 
+const appLog = (msg) => {
+    console.log(msg);
+}
+
 module.exports = {
-    RequestLogger
+    RequestLogger,
+    appLog
 }
