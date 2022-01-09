@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <article class="alert"></article>
+    <img class="logo" src="images/logo.svg" alt="logo">
+    <img class="logo" src="images/logo.svg" alt="logo">
+    <img class="logo" src="images/logo.svg" alt="logo">
+    <img class="logo" src="images/logo.svg" alt="logo">
+    <img class="logo" src="images/logo.svg" alt="logo">
+    <form action="/login" method="post">
+        <img src="images/pokemon.png" alt="">
+        <h2>Login to pokemon</h2>
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" nane="username">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" nane="password">
+        </div>
+        <div class="action">
+            <button><a href="/register">Register</a></button>
+            <button type="submit" >Login</button>
+        </div>
+    </form>
+    <script>
+        var balls = document.querySelectorAll('.logo');
+        var Alert = document.querySelector('.alert');
+        const move = function () {
+            balls.forEach(function (ball) {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                const ang = Math.random() * 360;
+                ball.style.transform = `translate(${x}px, ${y}px) rotate(${ang}deg)`;
+            });
+        }
+        setInterval(() => {
+            move()
+        }, 2000);
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.querySelector('#username').value;
+            const password = document.querySelector('#password').value;
+            Alert.style.transform = 'scaleX(0)';
+            const data = {
+                username: username,
+                password: password
+            }
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.hasError) {
+                        Alert.innerHTML = res.error;
+                        Alert.style.transform = 'scaleX(1)';
+                    } else {
+                        window.location.href = res.redirect;
+                    }
+                })
+        })
+
+    </script>
+</body>
+
+</html>

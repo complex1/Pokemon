@@ -1,0 +1,113 @@
+body, html {
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(126.83deg, #3B4CCA -2.71%, #CC0000 107.82%, #FF0000 152.72%);
+}
+
+.logo {
+    position: absolute;
+    text-align: center;
+    filter: blur(2px);
+    transition: transform 3s linear;
+}
+
+form {
+    position: absolute;
+    width: 400px;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+}
+
+form *:focus {
+    outline: none;
+}
+
+form > img {
+    width: 100%;
+}
+
+form > h2 {
+    color: var(--yellow-color);
+    font-size: 36px;
+    margin: 0px;
+    text-align: center;
+}
+
+form .input-group {
+    width: 300px;
+    margin: 0 auto;
+}
+
+form .input-group > label {
+    font-size:  16px;
+    color: var(--white-color);
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+form .input-group > input {
+    font-size: 16px;
+    border: 1px solid var(--white-color);
+    color: var(--black-color);
+    padding: 10px;
+    border-radius: 4px;
+    background: transparent;
+    width: 300px;
+}
+
+form .action {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+form .action a {
+    width: 100%;
+}
+
+form .action button {
+    padding: 12px 0;
+    color: var(--white-color);
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+}
+
+form .action button:nth-child(odd) {
+    background: linear-gradient(95.82deg, #FFDE00 -20.28%, rgba(255, 222, 0, 0) 132.52%);
+}
+
+form .action button:nth-child(even) {
+    background: linear-gradient(101.58deg, #3B4CCA -76.26%, rgba(59, 76, 202, 0) 166.75%);
+}
+
+.alert {
+    padding: 20px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--white-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s linear;
+}
