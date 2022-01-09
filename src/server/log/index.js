@@ -1,18 +1,13 @@
-//more options here - https://github.com/villadora/express-bunyan-logger#usage
-const RequestLogger = require('express-bunyan-logger')({
-    name: 'logger',
-    format: ":remote-address - :user-agent[major] custom logger",
-    streams: [{
-        level: 'info',
-        stream: process.stdout
-    }]
-})
+const requestLogger = (req, res, next) => {
+    console.log(`REQUEST ${req.method}: Url: ${req.originalUrl} ${req.method !== 'GET' ? `, BODY: ${JSON.stringify(req.body)}` : ''}`);
+    next();
+}
 
 const appLog = (msg) => {
     console.log(msg);
 }
 
 module.exports = {
-    RequestLogger,
+    requestLogger,
     appLog
 }

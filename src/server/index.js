@@ -4,8 +4,15 @@ require('./Model').init();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const { RequestLogger } = require('./log');
+
+
+// Middleware
 const proxyMiddleware = require('./Middleware/proxyMiddleware');
+const authMiddleware = require('./Middleware/authMiddleware');
+const { requestLogger } = require('./log');
+
+
+// Configs
 const routerConfig = require('./Config/routes');
 const config = require('../config.json');
 
@@ -22,13 +29,12 @@ server.use(express.static(path.join(__dirname, '..', 'client', 'static')))
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 server.use(cookieParser())
-// server.use(RequestLogger);
 
-server.use(routerConfig.user.basePath, userRouter);
-
-server.use('/', proxyMiddleware);
+// Routers
+server.use(routerConfig.user.basePath, requestLogger, userRouter);
+server.use('/', requestLogger, authMiddleware, proxyMiddleware);
 
 
 server.listen(config.dev.PORT, () => {
-    console.log('Server started on port 3000');
+    console.log('Server started on port ' + config.dev.PORT);
 });
