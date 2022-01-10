@@ -3,6 +3,7 @@ module.exports = {
         basePath: '/',
         login: '/login',
         register: '/register',
-        home: '/'
+        home: '/',
+        getUser: '/getuser',
     }
 }

@@ -102,11 +102,13 @@ class User {
         const params = [email, password];
         return new Promise((resolve, reject) => {
             sqlite.get(sql, params, (err, row) => {
+                appLog(err, row);
                 if (err) {
                     appLog(err.message);
                     reject(err);
                 } else {
                     appLog(`User ${email} authenticated`);
+                    appLog(row);
                     resolve(row);
                 }
             });

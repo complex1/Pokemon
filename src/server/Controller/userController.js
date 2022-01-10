@@ -17,19 +17,19 @@ userController.login = (req, res) => {
     const password = req.body.password;
     userService.authenticate(username, password)
         .then((user) => {
-            const token = jwt.sign({ username }, TOKEN_KEY)
+            const token = jwt.sign({ username: user.username, id: user.id, email: user.email }, TOKEN_KEY)
             res.cookie('POKEMON_AUTH_TOKEN', token)
-            .send({
-                hasError: false,
-                redirect: routerConfig.user.home
-            });
+                .send({
+                    hasError: false,
+                    redirect: routerConfig.user.home
+                });
         }).catch((err) => {
             res.send({
                 hasError: true,
                 error: err.message
             });
         }
-    );
+        );
 }
 
 userController.register = (req, res) => {
@@ -48,7 +48,15 @@ userController.register = (req, res) => {
                 error: err.message
             });
         }
-    );
+        );
+}
+
+userController.getUser = (req, res) => {
+    const user = req.user;
+    res.send({
+        hasError: false,
+        user
+    });
 }
 
 module.exports = userController;
