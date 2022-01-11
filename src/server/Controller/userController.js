@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const userService = require('../Service/userService');
 const routerConfig = require('../Config/routes');
+const { appLog } = require('../log');
 const TOKEN_KEY = process.env.JWT_PRIVATE_KEY;
 const userController = {}
 
@@ -40,7 +41,7 @@ userController.register = (req, res) => {
         .then(() => {
             res.send({
                 hasError: false,
-                redirect: routerConfig.user.home
+                redirect: routerConfig.user.login
             });
         }).catch((err) => {
             res.send({
@@ -53,10 +54,25 @@ userController.register = (req, res) => {
 
 userController.getUser = (req, res) => {
     const user = req.user;
-    res.send({
-        hasError: false,
-        user
-    });
+    userService.getUser(user.id)
+        .then((user) => {
+            if (user) {
+                res.send({
+                    hasError: false,
+                    user: user
+                });
+            } else {
+                res.send({
+                    hasError: true,
+                    error: 'User not found'
+                });
+            }
+        }).catch((err) => {
+            res.send({
+                hasError: true,
+                error: err.message
+            });
+        })
 }
 
 module.exports = userController;

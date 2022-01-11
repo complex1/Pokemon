@@ -12,13 +12,13 @@ class User {
         const sql = `INSERT INTO User (username, email, password, role) VALUES (?, ?, ?, ?)`;
         const params = [this.name, this.email, this.password, this.role];
         return new Promise((resolve, reject) => {
-            sqlite.run(sql, params, (err) => {
+            sqlite.run(sql, params, function (err) {
                 if (err) {
                     appLog(err.message);
                     reject(err);
                 } else {
-                    appLog(`User ${this.name} added`);
-                    resolve(this);
+                    appLog(`User ${this.lastID} added`);
+                    resolve(this.lastID);
                 }
             });
         });
@@ -107,9 +107,12 @@ class User {
                     appLog(err.message);
                     reject(err);
                 } else {
-                    appLog(`User ${email} authenticated`);
-                    appLog(row);
-                    resolve(row);
+                    if (row) {
+                        appLog(`User ${email} authenticated`);
+                        resolve(row);
+                    } else {
+                        reject(new Error('User not found'));
+                    }
                 }
             });
         });

@@ -32,7 +32,7 @@ server.use(cookieParser())
 
 // Routers
 server.use(routerConfig.user.basePath, requestLogger, userRouter);
-server.use('/', requestLogger, authMiddleware, proxyMiddleware);
+server.use('/', authMiddleware, proxyMiddleware);
 
 
 server.listen(config.dev.PORT, () => {

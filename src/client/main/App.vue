@@ -9,8 +9,9 @@ export default {
   components: {
     navbar
   },
-  setup() {
-    
+  created () {
+    console.log('App created!')
+    this.$store.dispatch('user/getUserDetails')
   }
 }
 </script>

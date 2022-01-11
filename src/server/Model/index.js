@@ -1,9 +1,10 @@
 const sqlite = require('../Module/sqlite');
+const { appLog } = require('../log/index');
 
 module.exports = {
     init() {
         (function () {
-            console.log('Creating User table...');
+            appLog('Creating User table...');
             const createUserTable = `CREATE TABLE IF NOT EXISTS User (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
@@ -16,9 +17,30 @@ module.exports = {
 
             sqlite.run(createUserTable, (err) => {
                 if (err) {
-                    console.log(err.message);
+                    appLog(err.message);
                 }
-                console.log('User table created');
+                appLog('User table created');
+            });
+        })();
+
+        (function () {
+            appLog('Creating User detail table...');
+            const createUserDetailTable = `CREATE TABLE IF NOT EXISTS UserDetail (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                name TEXT NOT NULL,
+                phone TEXT,
+                address TEXT,
+                access TEXT,
+                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES User(id)
+            );`;
+            sqlite.run(createUserDetailTable, (err) => {
+                if (err) {
+                    appLog(err.message);
+                }
+                appLog('User detail table created');
             });
         })();
     }
