@@ -1,6 +1,6 @@
 module.exports = {
     user: {
-        basePath: '/',
+        basePath: '/user',
         login: '/login',
         register: '/register',
         home: '/',

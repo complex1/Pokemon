@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/register.css">
 </head>
 
 <body>
@@ -452,7 +452,7 @@
                         <stop stop-color="#EF3434" />
                         <stop offset="1" stop-color="#361D7E" />
                     </linearGradient>
-                    <image id="image0_512_14" width="500" height="283" xlink:href="images/welcome.gif" />
+                    <image id="image0_512_14" width="500" height="283" xlink:href="/images/welcome.gif" />
                 </defs>
             </svg>
             <svg class="msg" width="338" height="278" viewBox="0 0 338 278" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -487,7 +487,7 @@
             </svg>
         </div>
         <div>
-            <form action="/register" method="post">
+            <form action="/user/register" method="post">
                 <h2>Register to pokemon</h2>
                 <div class="input-group">
                     <label for="email">Email</label>
@@ -506,7 +506,7 @@
                     <input type="password" id="confirm-password" nane="confirm-password">
                 </div>
                 <div class="action">
-                    <button><a href="/login">Login</a></button>
+                    <button><a href="/user/login">Login</a></button>
                     <button type="submit" >Register</button>
                 </div>
             </form>
@@ -552,7 +552,7 @@
                 return;
             }
             Print('Registering...');
-            fetch('/register', {
+            fetch('/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -29,6 +29,7 @@ module.exports = {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
                 name TEXT NOT NULL,
+                avatar TEXT,
                 phone TEXT,
                 address TEXT,
                 access TEXT,

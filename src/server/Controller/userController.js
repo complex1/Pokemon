@@ -41,7 +41,7 @@ userController.register = (req, res) => {
         .then(() => {
             res.send({
                 hasError: false,
-                redirect: routerConfig.user.login
+                redirect: routerConfig.user.basePath + routerConfig.user.login
             });
         }).catch((err) => {
             res.send({

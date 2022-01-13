@@ -1,18 +1,21 @@
 <template>
   <nav class="v-center space-between">
       <div class="left-section v-center">
-        <img src="@image/logo.svg" alt="">
+        <router-link to="/"><img src="@image/logo.svg" alt=""></router-link>
       </div>
       <div class="right-section v-center">
         <img src="@image/notification.svg" alt="">
-        <img src="@image/chat.svg" alt="">
+        <chat />
       </div>
   </nav>
 </template>
 
 <script>
+import chat from '@/components/chat/chat.vue'
 export default {
-
+  components: {
+    chat
+  },
 }
 </script>
 

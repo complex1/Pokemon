@@ -9,19 +9,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 
 <body>
     <article class="alert"></article>
-    <img class="logo" src="images/logo.svg" alt="logo">
-    <img class="logo" src="images/logo.svg" alt="logo">
-    <img class="logo" src="images/logo.svg" alt="logo">
-    <img class="logo" src="images/logo.svg" alt="logo">
-    <img class="logo" src="images/logo.svg" alt="logo">
-    <form action="/login" method="post">
-        <img src="images/pokemon.png" alt="">
+    <img class="logo" src="/images/logo.svg" alt="logo">
+    <img class="logo" src="/images/logo.svg" alt="logo">
+    <img class="logo" src="/images/logo.svg" alt="logo">
+    <img class="logo" src="/images/logo.svg" alt="logo">
+    <img class="logo" src="/images/logo.svg" alt="logo">
+    <form action="/user/login" method="post">
+        <img src="/images/pokemon.png" alt="">
         <h2>Login to pokemon</h2>
         <div class="input-group">
             <label for="username">Username</label>
@@ -32,7 +32,7 @@
             <input type="password" id="password" nane="password">
         </div>
         <div class="action">
-            <button><a href="/register">Register</a></button>
+            <button><a href="/user/register">Register</a></button>
             <button type="submit" >Login</button>
         </div>
     </form>
@@ -61,7 +61,7 @@
                 username: username,
                 password: password
             }
-            fetch('/login', {
+            fetch('/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

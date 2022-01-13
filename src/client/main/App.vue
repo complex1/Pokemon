@@ -10,7 +10,6 @@ export default {
     navbar
   },
   created () {
-    console.log('App created!')
     this.$store.dispatch('user/getUserDetails')
   }
 }

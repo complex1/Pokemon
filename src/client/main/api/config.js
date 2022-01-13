@@ -1,5 +1,5 @@
 export default {
     user: {
-        getUserDetails: '/getuser',
+        getUserDetails: '/user/getuser',
     }
 }

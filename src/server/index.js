@@ -8,7 +8,7 @@ const path = require('path');
 
 // Middleware
 const proxyMiddleware = require('./Middleware/proxyMiddleware');
-const authMiddleware = require('./Middleware/authMiddleware');
+// const authMiddleware = require('./Middleware/authMiddleware');
 const { requestLogger } = require('./log');
 
 
@@ -18,8 +18,9 @@ const config = require('../config.json');
 
 // Routes
 const userRouter = require('./Router/userRouter');
+const socket = require('./Socket/index');
 
-server = express();
+const server = express();
 
 server.use(express.json())
 server.set('view engine', 'ejs')
@@ -30,11 +31,16 @@ server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 server.use(cookieParser())
 
+
+
 // Routers
 server.use(routerConfig.user.basePath, requestLogger, userRouter);
-server.use('/', authMiddleware, proxyMiddleware);
+server.get('/*', proxyMiddleware);
 
 
-server.listen(config.dev.PORT, () => {
+const appServer = server.listen(config.dev.PORT, () => {
     console.log('Server started on port ' + config.dev.PORT);
 });
+
+// socket.io
+socket.init(appServer);
