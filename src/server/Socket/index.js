@@ -1,5 +1,4 @@
 
-const { appLog } = require('../log');
 const clientEvents = require('./clientEvents');
 const serverEvents = require('../Socket/serverEvents');
 module.exports = {

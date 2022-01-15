@@ -7,4 +7,50 @@
   --white-color: #FFFFFF;
   --black-color: #000000;
   --bg-color: #1D3125;
+
+  /* Chat vars */
+  --chat-background-color: rgb(31, 32, 30);
+  --chat-hover-background-color: rgb(38, 39, 37);
+  --chat-text-color: rgb(255, 255, 255);
+  --chat-text-light-color: rgba(255, 255, 255, 0.5);
+  --chat-text-lightest-color: rgba(255, 255, 255, 0.3);
+  --chat-color-1: #C8FA00;
+  --chat-color-2: #00D1FF;
+  --chat-gradient: linear-gradient(231.63deg, #C8FA00 -25.72%, #00D1FF 112%);
+  --chat-shadow: -4px -4px 4px rgba(255, 255, 255, 0.08), 4px 4px 8px rgba(0, 0, 0, 0.85);
+  --chat-inset-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.08), inset 4px 4px 8px rgba(0, 0, 0, 0.85);
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f3f1f100; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+*:focus {
+  outline: none;
+}
+
+p,h1,h2,h3,h4,h5,h6,li,ul,a,button,input,textarea,select {
+  padding: 0px;
+  margin: 0px;
 }

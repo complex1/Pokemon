@@ -19,16 +19,22 @@ const removeUserFromSocketMap = (socketUserMap, email, id) => {
 }
 
 module.exports = {
-    init (io, socket, socketUserMap) {
+    init(io, socket, socketUserMap) {
         const token = getToken(socket);
-        const user = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-        addUserToSocketMap(socketUserMap, user.email, socket.id);
-        appLog(user.email + ' connected with ws');
-        appLog(socketUserMap);
+        if (token) {
+            const user = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
+            addUserToSocketMap(socketUserMap, user.email, socket.id);
+            appLog(user.email + ' connected with ws');
+            appLog(socketUserMap);
 
-        socket.on('disconnect', () => {
-            removeUserFromSocketMap(socketUserMap, user.email, socket.id);
-            appLog(user.email + ' disconnected with ws');
-        });
+            socket.on('disconnect', () => {
+                removeUserFromSocketMap(socketUserMap, user.email, socket.id);
+                appLog(user.email + ' disconnected with ws');
+            });
+
+            socket.on('message', (message) => {
+                appLog(user.email + ' sent message: ' + message);
+            })
+        }
     }
 }
