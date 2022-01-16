@@ -9,5 +9,8 @@ module.exports = {
             clientEvents.init(io, socket, this.socketUserMap);
             serverEvents.init(io, this.socketUserMap);
         });
+    },
+    isOnline: function (email) {
+        return this.socketUserMap.has(email);
     }
 }

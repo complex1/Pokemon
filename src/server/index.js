@@ -8,7 +8,6 @@ const path = require('path');
 
 // Middleware
 const proxyMiddleware = require('./Middleware/proxyMiddleware');
-// const authMiddleware = require('./Middleware/authMiddleware');
 const { requestLogger } = require('./log');
 
 
@@ -18,6 +17,7 @@ const config = require('../config.json');
 
 // Routes
 const userRouter = require('./Router/userRouter');
+const chatRouter = require('./Router/chatRouter');
 const socket = require('./Socket/index');
 
 const server = express();
@@ -35,6 +35,7 @@ server.use(cookieParser())
 
 // Routers
 server.use(routerConfig.user.basePath, requestLogger, userRouter);
+server.use(routerConfig.chat.basePath, requestLogger, chatRouter);
 server.get('/*', proxyMiddleware);
 
 

@@ -5,5 +5,10 @@ module.exports = {
         register: '/register',
         home: '/',
         getUser: '/getuser',
+    },
+    chat: {
+        basePath: '/chat',
+        isOnline: '/isonline',
+        getSummaryChat: '/getsummarychat',
     }
 }

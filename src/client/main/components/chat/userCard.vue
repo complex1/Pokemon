@@ -1,12 +1,17 @@
 <template>
   <div class="user-card v-center" @click="$emit('selectUser')">
-    <Avatar />
+    <Avatar :user="data" />
     <div>
-      <p class="user-name">Lorem Ipsum</p>
-      <p v-if="!onlyUser" class="user-msg">Lorem ipsum dolor sit amet,</p>
+      <p class="user-name">
+        {{data.name}}
+        <!-- <small>{{data.email}}</small> -->
+      </p>
+      <p v-if="!onlyUser" class="user-msg">{{lastMessage.message}}</p>
     </div>
-    <div v-if="!onlyUser" class="date">88:88 PM</div>
-    <div  v-if="!onlyUser" class="unread-msg center">9+</div>
+    <div v-if="!onlyUser" class="date">
+      {{new Date(lastMessage.updated_at).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}}
+    </div>
+    <!-- <div  v-if="!onlyUser" class="unread-msg center">9+</div> -->
   </div>
 </template>
 
@@ -21,7 +26,16 @@ export default {
         onlyUser: {
             type: Boolean,
             default: false
+        },
+        data: {
+            type: Object,
+            default: () => ({})
         }
+    },
+    computed: {
+        lastMessage() {
+            return this.data.msg[this.data.msg.length - 1];
+        },
     }
 };
 </script>

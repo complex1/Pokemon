@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const userService = require('../Service/userService');
 const routerConfig = require('../Config/routes');
-const { appLog } = require('../log');
 const TOKEN_KEY = process.env.JWT_PRIVATE_KEY;
 const userController = {}
 

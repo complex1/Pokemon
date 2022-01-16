@@ -9,11 +9,12 @@
     </button>
   </div>
   <div class="user-card-container">
-    <UserCard @selectUser="$emit('selectUser')"/>
-    <UserCard @selectUser="$emit('selectUser')"/>
-    <UserCard @selectUser="$emit('selectUser')"/>
-    <UserCard @selectUser="$emit('selectUser')"/>
-    <UserCard @selectUser="$emit('selectUser')"/>
+    <UserCard
+      v-for="(chat, userEmail) in chats"
+      :key="userEmail"
+      :data="chat"
+      @selectUser="$emit('selectUser', userEmail)"
+    />
   </div>
 </template>
 
@@ -21,8 +22,12 @@
 import UserCard from "@/components/chat/userCard.vue";
 export default {
   emits: ["openSearch", "selectUser"],
+  props: ["chats"],
   components: {
     UserCard,
+  },
+  created() {
+    this.$store.dispatch("chat/getChatSummary");
   },
 };
 </script>

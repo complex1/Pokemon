@@ -44,5 +44,28 @@ module.exports = {
                 appLog('User detail table created');
             });
         })();
+
+        // chat table
+        (function () {
+            appLog('Creating Chat table...');
+            const createChatTable = `CREATE TABLE IF NOT EXISTS Chat (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                form_user TEXT NOT NULL,
+                form_user_name TEXT NOT NULL,
+                to_user TEXT NOT NULL,
+                to_user_name TEXT NOT NULL,
+                message TEXT,
+                active INTEGER NOT NULL DEFAULT 1,
+                seen INTEGER NOT NULL DEFAULT 1,
+                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );`;
+            sqlite.run(createChatTable, (err) => {
+                if (err) {
+                    appLog(err.message);
+                }
+                appLog('Chat table created');
+            });
+        })();
     }
 }

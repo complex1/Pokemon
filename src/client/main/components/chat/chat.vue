@@ -6,6 +6,7 @@
         @openSearch="openScreen('SearchUser')"
         @selectUser="selectUser"
         v-if="openChatScreen === 'RecentChat'"
+        :chats="chats"
       />
       <SearchUser
         @goBack="openScreen('RecentChat')"
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import RecentChat from "@/components/chat/recentChat.vue";
 import SearchUser from "@/components/chat/searchUser.vue";
 import UserChat from '@/components/chat/userChat.vue';
@@ -39,6 +41,9 @@ export default {
   },
   created() {
     this.$store.dispatch("chat/initChatSocket");
+  },
+  computed: {
+    ...mapGetters('chat', ['chats'])
   },
   methods: {
     openChat() {

@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      isValidImage: true,
+      isValidImage: !!this.user.image,
     };
   },
   methods: {

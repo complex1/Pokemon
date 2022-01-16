@@ -1,11 +1,15 @@
 const jwt = require("jsonwebtoken");
 const routerConfig = require('../Config/routes');
 
-
+const loginPath = routerConfig.user.basePath + routerConfig.user.login
 const authMiddleware = (req, res, next) => {
     const token = req.cookies.POKEMON_AUTH_TOKEN;
     if (!token) {
-        res.redirect(routerConfig.user.basePath + routerConfig.user.login);
+        res.send({
+            status: false,
+            message: "You are not logged in",
+            redirect: loginPath
+        })
         return;
     }
     try {
@@ -13,7 +17,11 @@ const authMiddleware = (req, res, next) => {
         req.user = decoded;
         next();
     } catch (err) {
-        res.redirect(routerConfig.user.basePath + routerConfig.user.login);
+        res.send({
+            status: false,
+            message: "You are not logged in",
+            redirect: loginPath
+        })
     }
 }
 
