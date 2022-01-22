@@ -7,7 +7,7 @@
       v-model="search"
       type="text"
       placeholder="Search User..."
-      @keydown="searchUser"
+      @keyup="searchUser"
     />
   </div>
   <div v-if="isLoading" class="loading-user" />
@@ -15,11 +15,12 @@
     No search result found for user “<b>{{search}}</b>” 
   </div>
   <div v-else-if="!isLoading && users.length" class="user-card-container">
-    <UserCard @selectUser="$emit('selectUser')" onlyUser/>
-    <UserCard @selectUser="$emit('selectUser')" onlyUser/>
-    <UserCard @selectUser="$emit('selectUser')" onlyUser/>
-    <UserCard @selectUser="$emit('selectUser')" onlyUser/>
-    <UserCard @selectUser="$emit('selectUser')" onlyUser/>
+    <UserCard
+      v-for="user in users"
+      :key="user.id"
+      :data="user"
+      @selectUser="$emit('selectUser', user)"
+      onlyUser/>
   </div>
 </template>
 
@@ -30,7 +31,7 @@ export default {
   components: {
     UserCard,
   },
-  emits: ["goBack"],
+  emits: ["goBack", "selectUser"],
   data() {
     return {
       search: "",
@@ -39,7 +40,16 @@ export default {
     };
   },
   methods: {
-    searchUser() {},
+    searchUser() {
+      this.isLoading = true;
+      this.$store.dispatch("user/searchUser", {
+        keyword: this.search,
+        cb: (users) => {
+          this.isLoading = false;
+          this.users = users.data || []
+        },
+      });
+    },
   },
 };
 </script>

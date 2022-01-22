@@ -29,6 +29,7 @@ module.exports = {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
                 name TEXT NOT NULL,
+                email TEXT NOT NULL,
                 avatar TEXT,
                 phone TEXT,
                 address TEXT,
@@ -50,8 +51,8 @@ module.exports = {
             appLog('Creating Chat table...');
             const createChatTable = `CREATE TABLE IF NOT EXISTS Chat (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                form_user TEXT NOT NULL,
-                form_user_name TEXT NOT NULL,
+                from_user TEXT NOT NULL,
+                from_user_name TEXT NOT NULL,
                 to_user TEXT NOT NULL,
                 to_user_name TEXT NOT NULL,
                 message TEXT,

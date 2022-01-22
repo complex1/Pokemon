@@ -55,8 +55,9 @@ export default {
     openScreen(screen) {
       this.openChatScreen = screen;
     },
-    selectUser() {
+    selectUser(user) {
       this.openChatScreen = "UserChat";
+      this.$store.commit("chat/setOpenChat", user);
     },
   },
 };

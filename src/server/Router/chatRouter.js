@@ -6,4 +6,5 @@ const authMiddleware = require('../Middleware/authMiddleware');
 
 router.get(routerConfig.chat.isOnline, authMiddleware, chatController.isOnline);
 router.get(routerConfig.chat.getSummaryChat, authMiddleware, chatController.getSummaryChat);
+router.get(routerConfig.chat.getChat, authMiddleware, chatController.getChat);
 module.exports = router;

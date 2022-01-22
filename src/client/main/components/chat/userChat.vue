@@ -4,43 +4,55 @@
       <img src="@image/chat-go-back.svg" alt="" />
     </button>
     <div class="user">
-      <avatar :size="30"/>
-      <span>
-        Shubham Maurya
-      </span>
+      <avatar :size="30" :user="{
+        isOnline: openChatIsOnline,
+        name: openChatName,
+
+      }" />
+      <span> {{openChatName}} </span>
     </div>
   </div>
   <div class="chat-container">
-    <div class="chat-row left">
+    <div
+      v-for="msg in getChatWithEmail.msg"
+      :key="msg.id"
+      class="chat-row"
+      :class="{ 'right': msg.from_user !== openChatEmail }"
+    >
       <div class="chat-box">
-        <p class="msg">Hiii</p>
-        <p class="time">88:88 PM</p>
-      </div>
-    </div>
-    <div class="chat-row right">
-      <div class="chat-box">
-        <p class="msg">Hiii</p>
-        <p class="time">88:88 PM</p>
+        <p class="msg">{{ msg.message }}</p>
+        <p class="time">
+          {{
+            new Date(msg.updated_at).toLocaleString("en-US", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            })
+          }}
+        </p>
       </div>
     </div>
   </div>
   <div class="chat-text v-center">
-    <input
-      v-model="search"
-      type="text"
-      placeholder="Type message..."
-    />
-    <button class="center" >
+    <input v-model="search" type="text" placeholder="Type message..." />
+    <button class="center">
       <img src="@image/chat-send.svg" alt="" />
     </button>
   </div>
 </template>
 
 <script>
-import avatar from '../common/avatar.vue';
+import { mapGetters } from "vuex";
+import avatar from "../common/avatar.vue";
 export default {
   components: { avatar },
   emits: ["goBack"],
+  computed: {
+    ...mapGetters("chat", ["getChatWithEmail", "openChatEmail", "openChatName", "openChatIsOnline" ]),
+  },
+  created() {
+    this.$store.dispatch("chat/getChat");
+  },
 };
 </script>
 

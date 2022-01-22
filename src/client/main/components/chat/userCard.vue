@@ -3,13 +3,20 @@
     <Avatar :user="data" />
     <div>
       <p class="user-name">
-        {{data.name}}
-        <!-- <small>{{data.email}}</small> -->
+        {{ data.name }}
+        <br v-if="onlyUser" />
+        <small v-if="onlyUser">{{ data.email }}</small>
       </p>
-      <p v-if="!onlyUser" class="user-msg">{{lastMessage.message}}</p>
+      <p v-if="!onlyUser" class="user-msg">{{ lastMessage.message }}</p>
     </div>
     <div v-if="!onlyUser" class="date">
-      {{new Date(lastMessage.updated_at).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}}
+      {{
+        new Date(lastMessage.updated_at).toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })
+      }}
     </div>
     <!-- <div  v-if="!onlyUser" class="unread-msg center">9+</div> -->
   </div>
@@ -18,25 +25,25 @@
 <script>
 import Avatar from "@/components/common/avatar.vue";
 export default {
-    components: {
-        Avatar
+  components: {
+    Avatar,
+  },
+  emits: ["selectUser"],
+  props: {
+    onlyUser: {
+      type: Boolean,
+      default: false,
     },
-    emits: ["selectUser"],
-    props: {
-        onlyUser: {
-            type: Boolean,
-            default: false
-        },
-        data: {
-            type: Object,
-            default: () => ({})
-        }
+    data: {
+      type: Object,
+      default: () => ({}),
     },
-    computed: {
-        lastMessage() {
-            return this.data.msg[this.data.msg.length - 1];
-        },
-    }
+  },
+  computed: {
+    lastMessage() {
+      return this.data.msg[this.data.msg.length - 1];
+    },
+  },
 };
 </script>
 

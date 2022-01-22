@@ -1,3 +1,4 @@
+const Socekt = require('../Socket');
 const User = require('../Model/user');
 const UserDetail = require('../Model/userDetail');
 const userService = {}
@@ -16,7 +17,7 @@ userService.register = (name, email, password) => {
         } else {
             user = new User(name, email, password);
             user.addUser().then((id) => {
-                const userDetail = new UserDetail(id, name);
+                const userDetail = new UserDetail(id, name, email);
                 return userDetail.addUserDetail();
             }).catch((err) => {
                 return Promise.reject(err);
@@ -26,14 +27,13 @@ userService.register = (name, email, password) => {
 }
 
 userService.getUser = (id) => {
-    const user = new User()
     const userDetail = new UserDetail()
     return new Promise((resolve, reject) => {
-        Promise.all([user.getUserById(id), userDetail.getUserDetail(id)]).then(([user, userDetail]) => {
-            if (user && userDetail) {
-                resolve({ ...user, ...userDetail });
+        userDetail.getUserDetail(id).then((userDetail) => {
+            if (userDetail) {
+                resolve(userDetail);
             } else {
-                resolve(null);
+                reject(new Error('User not found'));
             }
         }).catch((err) => {
             reject(err);
@@ -41,4 +41,23 @@ userService.getUser = (id) => {
     })
 }
 
-module.exports =  userService;
+userService.search = (keyword, email) => {
+    const userDetail = new UserDetail()
+    if (keyword && keyword.length > 0) {
+        return new Promise((resolve, reject) => {
+            userDetail.searchUserDetail(keyword, email).then((userDetail) => {
+                if (userDetail) {
+                    resolve(userDetail.map((userDetail) => ({...userDetail, isOnline: Socekt.isOnline(userDetail.email)})));
+                } else {
+                    reject(new Error('User not found'));
+                }
+            }).catch((err) => {
+                reject(err);
+            })
+        })
+    } else {
+        return Promise.reject(new Error('Keyword is required'));
+    }
+}
+
+module.exports = userService;

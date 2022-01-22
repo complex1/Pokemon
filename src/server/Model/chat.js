@@ -2,10 +2,9 @@ const sqlite = require('../Module/sqlite');
 const { appLog } = require('../log');
 
 class Chat {
-    constructor(id, form_user, form_user_name, to_user, to_user_name, message) {
-        this.id = id;
-        this.form_user = form_user;
-        this.form_user_name = form_user_name;
+    constructor(from_user, from_user_name, to_user, to_user_name, message) {
+        this.from_user = from_user;
+        this.from_user_name = from_user_name;
         this.to_user = to_user;
         this.to_user_name = to_user_name;
         this.message = message;
@@ -14,8 +13,8 @@ class Chat {
     }
     addChat() {
         return new Promise((resolve, reject) => {
-            sqlite.run(`INSERT INTO chat (form_user, form_user_name, to_user, to_user_name, message, active, seen, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                [this.form_user, this.form_user_name, this.to_user, this.to_user_name, this.message, this.active, this.seen],
+            sqlite.run(`INSERT INTO chat (from_user, from_user_name, to_user, to_user_name, message, active, seen, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                [this.from_user, this.from_user_name, this.to_user, this.to_user_name, this.message, this.active, this.seen],
                 (err) => {
                     if (err) {
                         appLog.error(err);
@@ -28,8 +27,8 @@ class Chat {
     }
     getChat() {
         return new Promise((resolve, reject) => {
-            sqlite.all(`SELECT * FROM chat WHERE (form_user = ? AND to_user = ?) OR (form_user = ? AND to_user = ?) ORDER BY created_at ASC`,
-                [this.form_user, this.to_user, this.to_user, this.form_user],
+            sqlite.all(`SELECT * FROM chat WHERE (from_user = ? AND to_user = ?) OR (from_user = ? AND to_user = ?) ORDER BY created_at ASC`,
+                [this.from_user, this.to_user, this.to_user, this.from_user],
                 (err, rows) => {
                     if (err) {
                         appLog.error(err);
@@ -42,7 +41,7 @@ class Chat {
     }
     getSummaryChat(userEmail) {
         return new Promise((resolve, reject) => {
-            sqlite.all(`SELECT * FROM chat WHERE form_user = ? OR to_user = ? ORDER BY created_at ASC`,
+            sqlite.all(`SELECT * FROM chat WHERE from_user = ? OR to_user = ? ORDER BY created_at ASC`,
                 [userEmail, userEmail],
                 (err, rows) => {
                     if (err) {

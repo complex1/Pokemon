@@ -24,6 +24,13 @@ export default {
                     console.log(error)
                 }
             )
+        },
+        searchUser(_, {keyword, cb}) {
+            userApi.searchUser(
+                keyword,
+                (e) => {cb && cb(e)},
+                () => {cb && cb([])}
+            )
         }
     }
 }

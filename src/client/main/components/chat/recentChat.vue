@@ -13,7 +13,7 @@
       v-for="(chat, userEmail) in chats"
       :key="userEmail"
       :data="chat"
-      @selectUser="$emit('selectUser', userEmail)"
+      @selectUser="$emit('selectUser', { email: userEmail, name: chat.name, isOnline: chat.isOnline })"
     />
   </div>
 </template>

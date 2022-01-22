@@ -45,7 +45,7 @@ userController.register = (req, res) => {
         }).catch((err) => {
             res.send({
                 hasError: true,
-                error: err.message
+                message: err.message
             });
         }
         );
@@ -58,18 +58,42 @@ userController.getUser = (req, res) => {
             if (user) {
                 res.send({
                     hasError: false,
-                    user: user
+                    data: user
                 });
             } else {
                 res.send({
                     hasError: true,
-                    error: 'User not found'
+                    message: 'User not found'
                 });
             }
         }).catch((err) => {
             res.send({
                 hasError: true,
-                error: err.message
+                message: err.message
+            });
+        })
+}
+
+userController.search = (req, res) => {
+    const keyword = req.query.q;
+    const email = req.user.email;
+    userService.search(keyword, email)
+        .then((user) => {
+            if (user) {
+                res.send({
+                    hasError: false,
+                    data: user
+                });
+            } else {
+                res.send({
+                    hasError: true,
+                    message: 'User not found'
+                });
+            }
+        }).catch((err) => {
+            res.send({
+                hasError: true,
+                message: err.message
             });
         })
 }

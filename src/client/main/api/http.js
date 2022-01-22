@@ -8,12 +8,13 @@ const callback = (fn) => {
     return (res) => {
         if (typeof fn === 'function') {
             const data = res.data;
-            if (data.status) {
+            if (!data.hasError) {
                 fn(data);
             } else if (data.redirect) {
                 window.location.href = data.redirect;
             } else {
                 console.error(data.message);
+                fn(data)
             }
         } else {
             console.log(`${fn} is not a function`);
