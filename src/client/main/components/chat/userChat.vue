@@ -4,20 +4,22 @@
       <img src="@image/chat-go-back.svg" alt="" />
     </button>
     <div class="user">
-      <avatar :size="30" :user="{
-        isOnline: openChatIsOnline,
-        name: openChatName,
-
-      }" />
-      <span> {{openChatName}} </span>
+      <avatar
+        :size="30"
+        :user="{
+          isOnline: openChatIsOnline,
+          name: openChatName,
+        }"
+      />
+      <span> {{ openChatName }} </span>
     </div>
   </div>
-  <div class="chat-container">
+  <div class="chat-container" ref="chatContainer">
     <div
       v-for="msg in getChatWithEmail.msg"
       :key="msg.id"
       class="chat-row"
-      :class="{ 'right': msg.from_user !== openChatEmail }"
+      :class="{ right: msg.from_user !== openChatEmail }"
     >
       <div class="chat-box">
         <p class="msg">{{ msg.message }}</p>
@@ -34,8 +36,8 @@
     </div>
   </div>
   <div class="chat-text v-center">
-    <input v-model="search" type="text" placeholder="Type message..." />
-    <button class="center">
+    <input v-model="message" @keypress.enter="sendMessage" type="text" placeholder="Type message..." />
+    <button class="center" @click="sendMessage">
       <img src="@image/chat-send.svg" alt="" />
     </button>
   </div>
@@ -47,11 +49,37 @@ import avatar from "../common/avatar.vue";
 export default {
   components: { avatar },
   emits: ["goBack"],
+  data() {
+    return {
+      message: "",
+    };
+  },
   computed: {
-    ...mapGetters("chat", ["getChatWithEmail", "openChatEmail", "openChatName", "openChatIsOnline" ]),
+    ...mapGetters("chat", [
+      "getChatWithEmail",
+      "openChatEmail",
+      "openChatName",
+      "openChatIsOnline",
+    ]),
+  },
+  watch: {
+    getChatWithEmail: {
+      handler() {
+        setTimeout(() => {
+          this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+        }, 100)
+      },
+      deep: true,
+    },
   },
   created() {
     this.$store.dispatch("chat/getChat");
+  },
+  methods: {
+    sendMessage() {
+      this.$store.dispatch("chat/sendMessage", this.message);
+      this.message = ''
+    },
   },
 };
 </script>

@@ -12,5 +12,6 @@ module.exports = {
         isOnline: '/isonline',
         getSummaryChat: '/getsummarychat',
         getChat: '/getchat',
+        sendMessage: '/sendmessage',
     }
 }

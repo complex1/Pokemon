@@ -15,14 +15,14 @@ export default {
     openChatEmail(state) {
       return state.openChatEmail;
     },
-    openChatName (state) {
+    openChatName(state) {
       return state.openChatName
     },
-    openChatIsOnline (state) {
+    openChatIsOnline(state) {
       return state.openChatIsOnline
     },
     getChatWithEmail(state) {
-      return state.chats[state.openChatEmail] || {isOnline: state.openChatIsOnline, msg: [], name: state.openChatName};
+      return state.chats[state.openChatEmail] || { isOnline: state.openChatIsOnline, msg: [], name: state.openChatName };
     }
   },
   mutations: {
@@ -30,8 +30,11 @@ export default {
       state.chats = chats;
     },
     setUpChatSocket(state, socket) {
-      socket.on('message', (message) => {
-        console.log('message', message);
+      socket.on('chat', (message) => {
+        if (!(message.from_user in state.chats)) {
+          state.chats[message.from_user] = { isOnline: state.openChatIsOnline, msg: [], name: message.from_user_name };
+        }
+        state.chats[message.from_user].msg.push(message);
       });
     },
     setOpenChat(state, user) {
@@ -47,8 +50,8 @@ export default {
     initChatSocket({ commit }) {
       commit('setUpChatSocket', socket);
     },
-    isOnline({ commit, state}) {
-      api.getUserIsOnline(state.openChatEmail,(res) => {
+    isOnline({ commit, state }) {
+      api.getUserIsOnline(state.openChatEmail, (res) => {
         commit('setUserOnline', res.data)
       })
     },
@@ -66,6 +69,22 @@ export default {
           [state.openChatEmail]: {
             ...state.chats[state.openChatEmail],
             msg: response.data
+          }
+        });
+      }, (error) => {
+        console.log('error', error);
+      });
+    },
+    sendMessage({ state, commit }, message) {
+      api.sendMessage({
+        email: state.openChatEmail,
+        name: state.openChatName,
+      }, message, (response) => {
+        commit('setChats', {
+          ...state.chats,
+          [state.openChatEmail]: {
+            ...state.chats[state.openChatEmail],
+            msg: [...state.chats[state.openChatEmail].msg, response.data]
           }
         });
       }, (error) => {

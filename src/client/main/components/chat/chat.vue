@@ -1,6 +1,6 @@
 <template>
-  <img @click="openChat" src="@image/chat.svg" alt="chat" />
-  <section class="chat-window">
+  <img @click="toggleChat" src="@image/chat.svg" alt="chat" />
+  <section v-if="openChatWindow" class="chat-window">
     <div>
       <RecentChat
         @openSearch="openScreen('SearchUser')"
@@ -46,8 +46,8 @@ export default {
     ...mapGetters('chat', ['chats'])
   },
   methods: {
-    openChat() {
-      this.openChatWindow = true;
+    toggleChat() {
+      this.openChatWindow = !this.openChatWindow;
     },
     closeChat() {
       this.openChatWindow = false;

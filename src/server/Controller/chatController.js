@@ -41,5 +41,24 @@ chatController.getChat = (req, res) => {
     })
 }
 
+chatController.sendMessage = (req, res) => {
+    const fromUser = req.user;
+    const toUser = req.body.to;
+    const message = req.body.message;
+    chatService.sendMessage(fromUser, toUser, message).then(result => {
+        res.send({ 
+            hasError: false,
+            data: result
+        });
+    }).catch(err => {
+        res.send({
+            hasError: true,
+            message: err.message
+        });
+    })
+}
+
+
+
 
 module.exports = chatController

@@ -6,7 +6,7 @@ const authMiddleware = (req, res, next) => {
     const token = req.cookies.POKEMON_AUTH_TOKEN;
     if (!token) {
         res.send({
-            status: false,
+            hasError: true,
             message: "You are not logged in",
             redirect: loginPath
         })
@@ -18,7 +18,7 @@ const authMiddleware = (req, res, next) => {
         next();
     } catch (err) {
         res.send({
-            status: false,
+            hasError: true,
             message: "You are not logged in",
             redirect: loginPath
         })

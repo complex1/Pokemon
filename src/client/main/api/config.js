@@ -6,6 +6,7 @@ export default {
     chat: {
         getChatSummary: '/chat/getsummarychat',
         getChat: '/chat/getchat?to=',
-        isOnline: '/chat/isOnline?to='
+        isOnline: '/chat/isOnline?to=',
+        sendMessage: '/chat/sendmessage'
     },
 }

@@ -10,17 +10,19 @@ class Chat {
         this.message = message;
         this.active = 1;
         this.seen = 0;
+        this.created_at = new Date();
+        this.updated_at = new Date();
     }
     addChat() {
         return new Promise((resolve, reject) => {
-            sqlite.run(`INSERT INTO chat (from_user, from_user_name, to_user, to_user_name, message, active, seen, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                [this.from_user, this.from_user_name, this.to_user, this.to_user_name, this.message, this.active, this.seen],
+            sqlite.run(`INSERT INTO chat (from_user, from_user_name, to_user, to_user_name, message, active, seen, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                [this.from_user, this.from_user_name, this.to_user, this.to_user_name, this.message, this.active, this.seen, this.created_at, this.updated_at],
                 (err) => {
                     if (err) {
-                        appLog.error(err);
+                        appLog(err);
                         reject(err);
                     } else {
-                        resolve();
+                        resolve(this);
                     }
                 });
         });
@@ -41,7 +43,7 @@ class Chat {
     }
     getSummaryChat(userEmail) {
         return new Promise((resolve, reject) => {
-            sqlite.all(`SELECT * FROM chat WHERE from_user = ? OR to_user = ? ORDER BY created_at ASC`,
+            sqlite.all(`SELECT * FROM chat WHERE from_user = ? OR to_user = ? ORDER BY created_at DESC`,
                 [userEmail, userEmail],
                 (err, rows) => {
                     if (err) {

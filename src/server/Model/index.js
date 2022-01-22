@@ -58,8 +58,8 @@ module.exports = {
                 message TEXT,
                 active INTEGER NOT NULL DEFAULT 1,
                 seen INTEGER NOT NULL DEFAULT 1,
-                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                created_at NUMBER NOT NULL,
+                updated_at NUMBER NOT NULL
             );`;
             sqlite.run(createChatTable, (err) => {
                 if (err) {

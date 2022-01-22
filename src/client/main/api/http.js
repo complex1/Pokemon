@@ -29,7 +29,7 @@ export default {
             .catch(callback(onError));
     },
     post: (url, onSuccess, onError, body = {}, params = {}) => {
-        axios.post(url, {body, params, headers})
+        axios.post(url, body, { params, headers})
             .then(callback(onSuccess))
             .catch(callback(onError));
     },

@@ -10,5 +10,8 @@ export default {
     },
     getChat(to, onSuccess, onError) {
         http.get(config.chat.getChat + to, onSuccess, onError)
+    },
+    sendMessage(to, message, onSuccess, onError) {
+        http.post(config.chat.sendMessage, onSuccess, onError, {to, message})
     }
 }
