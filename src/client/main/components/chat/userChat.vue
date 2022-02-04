@@ -15,8 +15,57 @@
     </div>
   </div>
   <div class="chat-container" ref="chatContainer">
+    <div class="secrate-key" :class="{open: expandKey}">
+      <svg
+        @click="toggleSecrateKey"
+        width="10"
+        height="20"
+        viewBox="0 0 10 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8.54499 4.08241C8.523 5.82814 7.2346 7.06936 5.85103 7.05194C4.46745 7.03451 3.21072 5.76123 3.23271 4.0155C3.25469 2.26977 4.54309 1.02854 5.92667 1.04597C7.31025 1.0634 8.56698 2.33668 8.54499 4.08241Z"
+          stroke="white"
+          stroke-width="2"
+        />
+        <line
+          x1="6.02007"
+          y1="7.55343"
+          x2="4.3874"
+          y2="19.6503"
+          stroke="white"
+          stroke-width="2"
+        />
+        <line
+          x1="3.83095"
+          y1="18.5034"
+          x2="1.02132"
+          y2="18.1779"
+          stroke="white"
+          stroke-width="2"
+        />
+        <line
+          x1="5.06264"
+          y1="16.8243"
+          x2="2.25301"
+          y2="16.4988"
+          stroke="white"
+          stroke-width="2"
+        />
+        <line
+          x1="4.04506"
+          y1="15.1025"
+          x2="1.23543"
+          y2="14.7769"
+          stroke="white"
+          stroke-width="2"
+        />
+      </svg>
+      <input v-if="expandKey" type="password" v-model="secrateKey" @keypress.enter="setSalt">
+    </div>
     <div
-      v-for="msg in getChatWithEmail.msg"
+      v-for="msg in chat"
       :key="msg.id"
       class="chat-row"
       :class="{ right: msg.from_user !== openChatEmail }"
@@ -36,7 +85,12 @@
     </div>
   </div>
   <div class="chat-text v-center">
-    <input v-model="message" @keypress.enter="sendMessage" type="text" placeholder="Type message..." />
+    <input
+      v-model="message"
+      @keypress.enter="sendMessage"
+      type="text"
+      placeholder="Type message..."
+    />
     <button class="center" @click="sendMessage">
       <img src="@image/chat-send.svg" alt="" />
     </button>
@@ -46,12 +100,17 @@
 <script>
 import { mapGetters } from "vuex";
 import avatar from "../common/avatar.vue";
+import crypto from "@/utils/crypto";
 export default {
   components: { avatar },
   emits: ["goBack"],
   data() {
     return {
       message: "",
+      expandKey: false,
+      secrateKey: '',
+      cipher: null,
+      decipher: null,
     };
   },
   computed: {
@@ -61,13 +120,20 @@ export default {
       "openChatName",
       "openChatIsOnline",
     ]),
+    chat () {
+      return this.getChatWithEmail.msg.map(msg => {
+        msg.message = typeof this.cipher === 'function' ? this.decipher(msg.message) : msg.message
+        return msg;
+      });
+    },
   },
   watch: {
     getChatWithEmail: {
       handler() {
         setTimeout(() => {
-          this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
-        }, 100)
+          this.$refs.chatContainer.scrollTop =
+            this.$refs.chatContainer.scrollHeight;
+        }, 100);
       },
       deep: true,
     },
@@ -76,9 +142,18 @@ export default {
     this.$store.dispatch("chat/getChat");
   },
   methods: {
+    setSalt () {
+      this.cipher = crypto.cipher(this.secrateKey);
+      this.decipher = crypto.decipher(this.secrateKey);
+      this.expandKey = false;
+    },
+    toggleSecrateKey () {
+      this.expandKey = !this.expandKey
+    },
     sendMessage() {
-      this.$store.dispatch("chat/sendMessage", this.message);
-      this.message = ''
+      this.$store.dispatch("chat/sendMessage", 
+      typeof this.cipher === 'function' ? this.cipher(this.message) : this.message );
+      this.message = "";
     },
   },
 };
@@ -135,6 +210,7 @@ export default {
 .chat-container {
   height: calc(100% - 180px);
   overflow-y: scroll;
+  position: relative;
   .chat-row {
     display: flex;
     align-items: flex-end;
@@ -220,4 +296,32 @@ export default {
     }
   }
 }
+  .secrate-key {
+    position: sticky;
+    width: 25px;
+    top: 10px;
+    padding: 4px 8px;
+    z-index: 1;
+    background: var(--chat-background-color);
+    box-shadow: var(--chat-shadow);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    transition: width 0.3s ease-in-out;
+    display: flex;
+    &:hover {
+      background: var(--chat-hover-background-color);
+    }
+    &.open {
+      width: 100%;
+    }
+    & > input {
+      border-radius: 2em;
+      margin: 0 16px;
+      padding: 4px 16px;
+      color: white;
+      flex-grow: 1;
+      background: transparent;
+      border: 1px solid var(--chat-text-light-color);
+    }
+  }
 </style>
