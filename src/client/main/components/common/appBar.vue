@@ -27,7 +27,7 @@
       </defs>
     </svg>
     <div class="apps-icon" @click="$router.push('/pikachu')">
-      <img src="@image/pikachu.svg" alt="" />
+      <img src="@image/pikachu.png" alt="" />
     </div>
     <svg
       width="21"

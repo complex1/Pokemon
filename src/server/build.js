@@ -26,8 +26,8 @@ const server = express();
 
 server.use(express.json())
 server.set('view engine', 'ejs')
-// server.set('views', path.join(__dirname, '..', 'client', 'views'))
-// server.use(express.static(path.join(__dirname, '..', 'client', 'static')))
+server.set('views', path.join(__dirname, '..', '..', 'dist'))
+server.use(express.static(path.join(__dirname, '..', '..', 'dist')))
 
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))

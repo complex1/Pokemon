@@ -1,5 +1,5 @@
 <template>
-  <img @click="toggleChat" src="@image/chat.svg" alt="chat" />
+  <img @click="toggleChat" src="@image/chat.png" alt="chat"  width="34"/>
   <section v-if="openChatWindow" class="chat-window">
     <div>
       <RecentChat

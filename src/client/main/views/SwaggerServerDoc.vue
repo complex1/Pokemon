@@ -161,13 +161,13 @@ export default {
 <style lang="scss" scoped>
 .swagger {
   background: rgb(255, 255, 255);
-  height: calc(100vh - 30px);
+  height: calc(100vh - 40px);
 }
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
-  height: calc(100vh - 30px);
+  height: calc(100vh - 40px);
   overflow: auto;
 }
 

@@ -8,9 +8,11 @@
     :src="user.image"
     :alt="user.name"
     @error="handleError"
+    @click="click"
   />
   <div
     class="avatar-text"
+    @click="click"
     :class="{ online: user.isOnline }"
     :style="{
       background: user.themeColor || '#D9D7F1',
@@ -55,6 +57,9 @@ export default {
     handleError() {
       this.isValidImage = false;
     },
+    click () {
+      this.$emit('click')
+    }
   },
 };
 </script>
