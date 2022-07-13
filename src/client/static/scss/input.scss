@@ -1,0 +1,32 @@
+@import './vars.scss';
+.p-input {
+  position: relative;
+  input, select, textarea {
+    font-size: 0.9em;
+    padding: 0.5em 0.7em;
+    position: relative;
+    border: 1px solid $text-light;
+    border-radius: 0.3em;
+    color: $text-light;
+    &.block {
+      width: 100%;
+    }
+    &:focus {
+      border: 1px solid $opt-2;
+      outline: none;
+      box-shadow: 0px 0px 5px $opt-2;
+    }
+    &:focus + label {
+      color: $opt-2;
+    }
+  }
+  label {
+    position: absolute;
+    font-size: 0.8em;
+    top: -0.6em;
+    left: 15px;
+    color: $text-light;
+    background-color: $white;
+    padding: 0px 3px;
+  }
+}

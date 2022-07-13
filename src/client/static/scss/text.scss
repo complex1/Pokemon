@@ -1,0 +1,83 @@
+@import './vars.scss';
+
+.tx-x-small {
+  font-size: 12px;
+}
+
+.tx-small {
+  font-size: 14px;
+}
+
+.tx, .tx-md {
+  font-size: 16px;
+}
+
+.tx-lg {
+  font-size: 18px;
+}
+
+.tx-x-lg {
+  font-size: 22px;
+}
+
+.tx-header {
+  font-size: 28px;
+}
+
+.tx-n {
+  color: $text;
+}
+
+.tx-light {
+  color: $text-light;
+}
+
+.tx-lightest {
+  color: $text-lightest;
+}
+
+.tx-alert {
+  color: $alert;
+}
+
+.tx-success {
+  color: $success;
+}
+
+.tx-warning {
+  color: $warning;
+}
+
+.tx-white {
+  color: $white;
+}
+
+.tx-p {
+  color: $primary;
+}
+
+.tx-s {
+  color: $secondery;
+}
+
+.tx-o1 {
+  color: $opt-1;
+}
+
+.tx-o2 {
+  color: $opt-2;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.tx-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tx-line-break {
+  line-break: anywhere;
+}

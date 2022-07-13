@@ -1,0 +1,51 @@
+@import './bg.scss';
+@import './flex-box.scss';
+@import './spacing.scss';
+@import './text.scss';
+@import './vars.scss';
+@import './overlay.scss';
+@import './input.scss';
+@import './tooltip.scss';
+@import './loader.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');
+
+html, body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+  color: $text;
+  // background-color: rgba($secondery, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6,p,ol,li,a {
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  font-weight: normal;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.fh {
+  height: 100%;
+}
+
+.fw {
+  width: 100%;
+}
+
+input,select,textarea {
+  background-color: $white;
+}
+
+.prism-editor__textarea:focus {
+  outline: none;
+}

@@ -26,19 +26,9 @@
         </linearGradient>
       </defs>
     </svg>
-    <div class="apps-icon">
+    <div class="apps-icon" @click="$router.push('/pikachu')">
       <img src="@image/pikachu.svg" alt="" />
     </div>
-    <div class="apps-icon">
-      <img src="@image/pikachu.svg" alt="" />
-    </div>
-    <div class="apps-icon">
-      <img src="@image/pikachu.svg" alt="" />
-    </div>
-    <div class="apps-icon">
-      <img src="@image/pikachu.svg" alt="" />
-    </div>
-
     <svg
       width="21"
       height="91"

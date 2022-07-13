@@ -68,5 +68,73 @@ module.exports = {
                 appLog('Chat table created');
             });
         })();
+
+        // swagerFolder
+        (function () {
+            appLog('Creating Swager Folder table...');
+            const createSwagerFolderTable = `CREATE TABLE IF NOT EXISTS SwagerFolder (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            folder_name TEXT NOT NULL,
+            folder_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            folder_updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES User(id)
+        );`;
+            sqlite.run(createSwagerFolderTable, (err) => {
+                if (err) {
+                    appLog(err.message);
+                }
+                appLog('Swager Folder table created');
+            }
+            );
+        })();
+
+        // pikachuFolder
+        (function () {
+            appLog('Creating Pikachu Folder table...');
+            const createPikachuFolderTable = `CREATE TABLE IF NOT EXISTS PikachuFolder (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            folder_name TEXT NOT NULL,
+            folder_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            folder_updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES User(id)
+        );`;
+            sqlite.run(createPikachuFolderTable, (err) => {
+                if (err) {
+                    appLog(err.message);
+                }
+                appLog('Pikachu Folder table created');
+            }
+            );
+        })();
+
+        // pikachuServer
+
+        (function () {
+            appLog('Creating Pikachu Server table...');
+            const createPikachuServerTable = `CREATE TABLE IF NOT EXISTS PikachuServer (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            name TEXT NOT NULL,
+            proto TEXT NOT NULL,
+            endpoint TEXT NOT NULL,
+            docPath TEXT NOT NULL,
+            docVersion TEXT NOT NULL,
+            folder_id INTEGER NOT NULL,
+            folder_name TEXT NOT NULL,
+            server_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            server_updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (folder_id) REFERENCES User(id)
+    );`;
+            sqlite.run(createPikachuServerTable, (err) => {
+                if (err) {
+                    appLog(err.message);
+                }
+                appLog('Pikachu Server table created');
+            }
+            );
+        })();
     }
+
 }

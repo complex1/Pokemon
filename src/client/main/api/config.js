@@ -9,4 +9,16 @@ export default {
         isOnline: '/chat/isOnline?to=',
         sendMessage: '/chat/sendmessage'
     },
+    swagger: {
+        getFolders: '/api/swagger/getfolders',
+        addFolder: '/api/swagger/createfolder',
+        deleteFolder: '/api/swagger/deletefolder',
+        getServers: '/api/swagger/getservers',
+        addServer: '/api/swagger/createserver',
+        deleteServer: '/api/swagger/deleteserver',
+        updateServer: '/api/swagger/updateserver',
+    },
+    proxy: {
+        call: '/proxy/proxy-call'
+    }
 }

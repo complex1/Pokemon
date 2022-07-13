@@ -13,5 +13,20 @@ module.exports = {
         getSummaryChat: '/getsummarychat',
         getChat: '/getchat',
         sendMessage: '/sendmessage',
+    },
+    pikachu: {
+        basePath: '/api/swagger',
+        createFolder: '/createfolder',
+        getFolders: '/getfolders',
+        deleteFolder: '/deletefolder/:folderId',
+        createServer: '/createserver',
+        getServers: '/getservers/:folderId',
+        deleteServer: '/deleteserver/:serverId',
+        updateServer: '/updateserver',
+    },
+    proxy: {
+        basePath: '/proxy',
+        proxyCall: '/proxy-call'
     }
+
 }

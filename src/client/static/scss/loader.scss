@@ -1,0 +1,82 @@
+$size: 50px;
+.p-loader {
+  animation: bounce 1000ms infinite;
+  width: $size;
+  height: $size;
+  border-radius: $size;
+  border: solid ($size/25) black;
+  position: relative;    
+  background: linear-gradient(to bottom, #EEEEEE 0%,#FFFFFF 100%);;
+  margin: 10px auto;
+  
+  &:before,
+  &:after{
+    content: "";
+    display: block;
+  }
+  
+  &,
+  &:before,
+  &:after{
+    transition: all 600ms cubic-bezier(.67,.4,.36,.75);
+  }
+  
+  &:before {
+    width: $size;
+    height: ($size/2) -($size/25/2);
+    border-bottom: solid ($size/25) black;
+    border-radius: ($size/2) ($size/2) 0 0;
+    background: linear-gradient(to bottom, #d10000 0%,#ff0000 50%);
+  }
+  
+  &:after {
+    content: "";
+    width: $size/5;
+    height: $size/5;
+    background: linear-gradient(to bottom, #fff 0%,#ccc 100%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 ($size/50) black,
+                0 0 0 ($size/25) #ddd,
+                0 0 0 ($size/14) black,
+                0 0 ($size/10) ($size/17) rgba(0,0,0,0.4);
+  }
+}
+
+@keyframes bounce {
+  0%,20%,53%,to {
+      -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+      animation-timing-function: cubic-bezier(.215,.61,.355,1);
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0)
+  }
+
+  40%,43% {
+      -webkit-animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+      animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+      -webkit-transform: translate3d(0,-30px,0) scaleY(1.1);
+      transform: translate3d(0,-30px,0) scaleY(1.1)
+  }
+
+  70% {
+      -webkit-animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+      animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+      -webkit-transform: translate3d(0,-15px,0) scaleY(1.05);
+      transform: translate3d(0,-15px,0) scaleY(1.05)
+  }
+
+  80% {
+      -webkit-transition-timing-function: cubic-bezier(.215,.61,.355,1);
+      transition-timing-function: cubic-bezier(.215,.61,.355,1);
+      -webkit-transform: translateZ(0) scaleY(.95);
+      transform: translateZ(0) scaleY(.95)
+  }
+
+  90% {
+      -webkit-transform: translate3d(0,-4px,0) scaleY(1.02);
+      transform: translate3d(0,-4px,0) scaleY(1.02)
+  }
+}

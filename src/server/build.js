@@ -7,7 +7,7 @@ const path = require('path');
 
 
 // Middleware
-const proxyMiddleware = require('./Middleware/proxyMiddleware');
+// const proxyMiddleware = require('./Middleware/proxyMiddleware');
 const { requestLogger } = require('./log');
 
 
@@ -26,8 +26,8 @@ const server = express();
 
 server.use(express.json())
 server.set('view engine', 'ejs')
-server.set('views', path.join(__dirname, '..', 'client', 'views'))
-server.use(express.static(path.join(__dirname, '..', 'client', 'static')))
+// server.set('views', path.join(__dirname, '..', 'client', 'views'))
+// server.use(express.static(path.join(__dirname, '..', 'client', 'static')))
 
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
@@ -40,8 +40,13 @@ server.use(routerConfig.user.basePath, requestLogger, userRouter);
 server.use(routerConfig.chat.basePath, requestLogger, chatRouter);
 server.use(routerConfig.pikachu.basePath, requestLogger, pikachuRouter);
 server.use(routerConfig.proxy.basePath, requestLogger, proxyRouter)
-server.get('/*', proxyMiddleware);
+// server.get('/*', proxyMiddleware);
 
+server.use(express.static(path.join(__dirname, '..', '..', 'dist')))
+
+server.use('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'dist', 'index.html'))
+})
 
 const appServer = server.listen(config.dev.PORT, () => {
     console.log('Server started on port ' + config.dev.PORT);

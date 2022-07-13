@@ -5,6 +5,9 @@ import router from './router'
 import store from './store'
 import '../static/css/main.css'
 import '../static/scss/main.scss'
+import "../static/scss/index.scss";
+import VTooltip from 'v-tooltip'
+
 const app = createApp(App)
 
-app.use(store).use(router).mount('#app')
+app.use(store).use(router).use(VTooltip).mount('#app')

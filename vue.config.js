@@ -7,7 +7,8 @@ module.exports = {
         '@': path.resolve(__dirname, 'src/client/main/'),
         'main': path.resolve(__dirname, 'src/client/main'),
         '@image': path.resolve(__dirname, 'src/client/static/images'),
-        '@var': path.resolve(__dirname, 'src/client/static/scss/vars.scss')
+        '@var': path.resolve(__dirname, 'src/client/static/scss/vars.scss'),
+        '@scss': path.resolve(__dirname, 'src/client/static/scss'),
       }
     }
   }

@@ -1,0 +1,62 @@
+@import './vars.scss';
+
+.bg-alert {
+  background-color: $alert;
+}
+
+.bg-success {
+  background-color: $success;
+}
+
+.bg-warning {
+  background-color: $warning;
+}
+.bg-black {
+  background-color: $black;
+}
+
+.bg-p {
+  background-color: $primary;
+}
+
+.bg-s {
+  background-color: $secondery;
+}
+
+.bg-o1 {
+  background-color: $opt-1;
+}
+
+.bg-o2 {
+  background-color: $opt-2;
+}
+
+.bg-ele-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.bg-ele-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.bg-ele-3 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.bg-ele-4 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.bg-ele-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.circle {
+  border-radius: 50%;
+}
+.pill {
+  border-radius: 2em;
+}
+.round {
+  border-radius: 8px;
+}
