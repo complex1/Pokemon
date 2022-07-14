@@ -16,8 +16,13 @@
 
 <script>
 import proxy from '@/api/proxy.js'
+import PJson from "./json.vue";
+
 export default {
   name: 'responceCard',
+  components: {
+    PJson
+  },
   data: () => ({
     resData: null,
     reqConfig: null,

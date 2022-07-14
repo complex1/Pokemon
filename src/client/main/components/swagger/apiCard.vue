@@ -272,7 +272,6 @@ export default {
     },
   },
   mounted() {
-    console.log("efwerf");
     this.setProperty();
   },
 };
