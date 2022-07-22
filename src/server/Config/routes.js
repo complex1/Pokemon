@@ -27,6 +27,13 @@ module.exports = {
     proxy: {
         basePath: '/proxy',
         proxyCall: '/proxy-call'
+    },
+    notes: {
+        basePath: '/notes',
+        addNote: '/addnote',
+        updateNote: '/updatenote',
+        deleteNote: '/deletenote',
+        getNotes: '/getnotes',
     }
 
 }

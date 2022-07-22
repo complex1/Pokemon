@@ -8,11 +8,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 999999999999;
   & > div,form {
     min-height: 100px;
     min-width: 100px;
     background-color: #fff;
     border-radius: 8px;
+    z-index: 1;
   }
 }

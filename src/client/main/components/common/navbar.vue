@@ -5,17 +5,18 @@
     </div>
     <div class="right-section v-center">
       <!-- <img src="@image/notification.svg" alt=""> -->
+      <notes />
       <chat />
       <Popper>
         <div class="ml-4">
-        <avatar
-          size="30"
-          :user="{
-            name: userDetails.name || '',
-            image: userDetails.avatar,
-          }"
-        />
-      </div>
+          <avatar
+            size="30"
+            :user="{
+              name: userDetails.name || '',
+              image: userDetails.avatar,
+            }"
+          />
+        </div>
         <template #content>
           <div class="user-option">
             <a href="/user/login"> Logout</a>
@@ -28,6 +29,7 @@
 
 <script>
 import chat from "@/components/chat/chat.vue";
+import notes from "@/components/notes";
 import Avatar from "./avatar.vue";
 import Popper from "vue3-popper";
 import { mapGetters } from "vuex";
@@ -36,6 +38,7 @@ export default {
     chat,
     Avatar,
     Popper,
+    notes
   },
   computed: {
     ...mapGetters("user", ["userDetails"]),

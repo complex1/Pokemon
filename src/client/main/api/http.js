@@ -36,12 +36,12 @@ export default {
             .catch(callback(onError));
     },
     put: (url, onSuccess, onError, body = {}, params = {}) => {
-        axios.put(url, { body, params, headers })
+        axios.put(url, body, { params, headers })
             .then(callback(onSuccess))
             .catch(callback(onError));
     },
     delete: (url, onSuccess, onError, body = {}, params = {}) => {
-        axios.delete(url, { body, params, headers })
+        axios.delete(url, body, { params, headers })
             .then(callback(onSuccess))
             .catch(callback(onError));
     }

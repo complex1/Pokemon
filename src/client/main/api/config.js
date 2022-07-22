@@ -20,5 +20,11 @@ export default {
     },
     proxy: {
         call: '/proxy/proxy-call'
+    },
+    notes: {
+        getNotes: '/notes/getnotes',
+        addNote: '/notes/addnote',
+        deleteNote: '/notes/deletenote',
+        updateNote: '/notes/updatenote'
     }
 }

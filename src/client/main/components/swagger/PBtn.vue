@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import colorMap from './colors.js'
+import { colorMap } from '@/constant';
 export default {
   name: 'p-btn',
   props: {

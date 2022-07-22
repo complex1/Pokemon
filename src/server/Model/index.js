@@ -135,6 +135,30 @@ module.exports = {
             }
             );
         })();
+
+        // Notes
+        (function () {
+            appLog('Creating Notes table...');
+            const createNotesTable = `CREATE TABLE IF NOT EXISTS Notes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            note_name TEXT NOT NULL,
+            note_content TEXT NOT NULL,
+            note_theme TEXT NOT NULL,
+            text_theme TEXT NOT NULL,
+            position TEXT NOT NULL,
+            note_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            note_updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES User(id)
+            );`;
+            sqlite.run(createNotesTable, (err) => {
+                if (err) {
+                    appLog(err.message);
+                }
+                appLog('Notes table created');
+            }
+            );
+        })();
     }
 
 }
