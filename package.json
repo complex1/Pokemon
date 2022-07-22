@@ -10,7 +10,7 @@
     "build-server": "node ./script/prod-build.js",
     "lint": "vue-cli-service lint",
     "build": "node ./build/uiBuild.js",
-    "app": "nodemon ./src/server/build.js"
+    "app": "node ./src/server/build.js"
   },
   "author": "",
   "license": "ISC",
