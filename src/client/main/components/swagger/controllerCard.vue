@@ -1,7 +1,7 @@
 <template>
   <div class="controller p-4 mb-4 round bg-ele-2">
     <div class="v-center space-between">
-      <h3 class="tx-x-lg tx-light pointer" @click="open = !open">{{controller.name}}</h3>
+      <h3 class="tx-x-lg tx-light pointer" @click="open = !open" v-html="getName(controller.name)" ></h3>
       <p class="tx-small">{{controller.description}}</p>
     </div>
     <div v-show="open">
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import apiCard from './apiCard.vue'
 export default {
   components: { apiCard },
@@ -20,7 +21,26 @@ export default {
   },
   data: () => ({
     open: false
-  })
+  }),
+  computed: {
+    ...mapState("swagger", ['searchKeyword']),
+    isOpen () {
+      return this.controller.open
+    }
+  },
+  methods: {
+    getName (name) {
+      return name.replace(this.searchKeyword, `<b class="search-find">${this.searchKeyword}</b>`)
+    }
+  },
+  watch: {
+    isOpen (val) {
+      this.open = val
+    }
+  },
+  mounted () {
+    this.open = this.isOpen
+  }
 }
 </script>
 
@@ -33,4 +53,9 @@ export default {
     color: $opt-2;
   }
 }
+</style>
+<style>
+.search-find {
+    background: yellow;
+  }
 </style>

@@ -3,8 +3,16 @@
     <div class="container">
       <nav class="v-center space-between">
         <breadcrum :path="path"></breadcrum>
+        <input
+          class="swagger-search"
+          type="text"
+          placeholder="Search"
+          v-model="searchKeyword"
+          @keyup="$store.commit('swagger/setSearchKeyword', searchKeyword)"
+          @change="$store.commit('swagger/setSearchKeyword', searchKeyword)"
+        />
         <div class="p-input my-4 ml-4">
-          <select class="block" v-model="openServerId">
+          <select class="block" v-model="openServerId" @change="changeServer">
             <option
               v-for="server in servers"
               :key="server.id"
@@ -56,6 +64,7 @@ export default {
   name: "SwaggerServerDoc",
   data() {
     return {
+      searchKeyword: "",
       openServerId: "",
       status: 2,
       error: {},
@@ -115,6 +124,9 @@ export default {
     },
   },
   methods: {
+    changeServer () {
+      window.location.href = `/pikachu/project/${this.openFolder.id}/server/${this.openServerId}`;
+    },
     fetchCompleted(res) {
       if (res.error) {
         this.status = -1;
@@ -162,6 +174,21 @@ export default {
 .swagger {
   background: rgb(255, 255, 255);
   height: calc(100vh - 40px);
+  &-search {
+    width: 200px;
+    height: 30px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 14px;
+    outline: none;
+    &:focus {
+      border: 1px solid rgb(0, 122, 255);
+    }
+    &::placeholder {
+      color: rgb(204, 204, 204);
+    }
+  }
 }
 .container {
   max-width: 1000px;

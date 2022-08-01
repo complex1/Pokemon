@@ -6,8 +6,7 @@
           <h4 class="method-badge py-2 mr-4 tx round" @click="open = !open">
             {{ api.method }}
           </h4>
-          <h4 class="api-path pointer tx-lg tx-light" @click="open = !open">
-            {{ api.path }}
+          <h4 class="api-path pointer tx-lg tx-light" @click="open = !open" v-html="getPath(api.path)">
           </h4>
         </div>
         <p class="tx-small tx-light">{{ api.description }}</p>
@@ -228,9 +227,12 @@ export default {
     query: [],
   }),
   computed: {
-    ...mapState("swagger", ["apiDoc", "proxyPath", "openServer"]),
+    ...mapState("swagger", ["apiDoc", "proxyPath", "openServer", "searchKeyword"]),
   },
   methods: {
+    getPath (path) {
+      return path.replace(this.searchKeyword, `<b class="search-find">${this.searchKeyword}</b>`)
+    },
     setProperty() {
       this.body = cloneDeep(this.api.body || null);
       this.headers = cloneDeep(this.api.header || []);

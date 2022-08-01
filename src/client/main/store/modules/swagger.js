@@ -8,7 +8,8 @@ export default {
     openFolder: null,
     openServer: null,
     apiDoc: null,
-    proxyPath: '/swagger/proxy'
+    proxyPath: '/swagger/proxy',
+    searchKeyword: ''
   },
   getters: {
   },
@@ -27,6 +28,9 @@ export default {
     },
     setApiDoc (state, apiDoc) {
       state.apiDoc = apiDoc
+    },
+    setSearchKeyword (state, keyword) {
+      state.searchKeyword = keyword
     }
   },
   actions: {
