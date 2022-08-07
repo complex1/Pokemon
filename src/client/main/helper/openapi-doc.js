@@ -7,6 +7,7 @@ const premitiveValue = {
   double: 0,
 }
 const objectConstructor = (property, definitions) => {
+  try {
   if ('type' in property) {
     if (property.type === 'object') {
       const classObj = {}
@@ -24,6 +25,9 @@ const objectConstructor = (property, definitions) => {
     }
   } if ('$ref' in property) {
     return definitions[property.$ref.split('/')[3]] ? objectConstructor(definitions[property.$ref.split('/')[3]], definitions) : {}
+  }
+  } catch (e) {
+    console.log(e)
   }
 }
 
