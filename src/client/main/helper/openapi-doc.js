@@ -1,10 +1,11 @@
-const premitive = ['string', 'integer', 'boolean', 'long', 'double']
+const premitive = ['string', 'integer', 'boolean', 'long', 'double', 'number']
 const premitiveValue = {
   string: 'string',
   integer: 0,
   boolean: false,
   long: 0,
   double: 0,
+  number: 0
 }
 const objectConstructor = (property, definitions) => {
   try {
@@ -59,7 +60,6 @@ const apiConstructor = (path, method, data) => {
   resObj.query = apiObject.parameters.filter(parameter => parameter.in === 'query').map(parameterFormatter)
   resObj.header = apiObject.parameters.filter(parameter => parameter.in === 'header').map(parameterFormatter)
   if (resObj.method !== 'get' && apiObject.requestBody ) {
-    console.log(apiObject)
     Object.keys(apiObject.requestBody.content).forEach(e => {
       resObj.consumes.push(e)
       resObj.body = objectConstructor(apiObject.requestBody.content[e].schema, data.components.schemas)
