@@ -20,17 +20,13 @@
         ref="resizeTop"
         @mousedown="activeResize($event, 'top')"
       />
-      <div class="fb-window__header" ref="parent" >
-        <div class="fa fa-times" @click="close"></div>
-        <span>{{title}}</span>
-        <span></span>
-      </div>
+      <div class="fa fa-expand-arrows-alt" ref="parent"></div>
+      <div class="fa fa-times" @click="close"></div>
       <slot />
   </section>
 </template>
 
 <script>
-
 export default {
   name: "FbWindow",
   props: {
@@ -157,40 +153,42 @@ export default {
 .fb-window {
   position: fixed;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-  background: rgba(225, 225, 225, 0.4);
-  border-radius: 0 0 4px 4px;
-  backdrop-filter: blur(5px);
+  background: transparent;
   
   // border: 1px solid rgba(255, 255, 255, 0.18);
   z-index: 999998;
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 2px;
-    background: rgba(202, 202, 202, 0.739);
-    border-bottom: 1px solid rgba(225, 225, 225, 0.18);
-    border-radius: 4px 4px 0 0;
-    cursor: grab;
-    position: sticky;
 
-    .fa-times {
-      cursor: pointer;
-      height: 14px;
-      width: 14px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 10px;
-      color: #ffffff;
-      background-color: red;
-      border-radius: 50%;
-      margin-left: 4px;
-    }
-    span {
-      font-size: 14px;
-      color: rgba(0,0,0,0.7);
-    }
+  .fa.fa-expand-arrows-alt {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 16px;
+    color: rgba(0,0,0, 0.5);
+    cursor: grab;
+    z-index: 90000000;
+  }
+  &:hover .fa.fa-expand-arrows-alt {
+    display: block;
+    // color: rgba(0,0,0,0.5);
+  }
+  .fa.fa-times {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    height: 20px;
+    width: 20px;
+    font-size: 16px;
+    color: rgb(0, 0, 0, 0.6);
+    padding: 2px;
+    padding-left: 3px;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999;
   }
   &__container {
     position: relative;
@@ -199,6 +197,8 @@ export default {
   }
 
   &__navbar {
+    cursor: grab;
+    position: sticky;
     top: 0px;
   }
 

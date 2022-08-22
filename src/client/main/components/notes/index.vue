@@ -5,7 +5,7 @@
       <div class="notes">
         <nav>
           <h3>Notes</h3>
-          <p-btn color="teal" @click="addNewNote"> Add New Note </p-btn>
+          <p-btn color="teal" @click="addNewNote" :light="true" > Add New Note </p-btn>
         </nav>
         <div
           class="notes-list"
@@ -13,7 +13,7 @@
           :key="note.id"
           :style="{
             color: note.text_theme,
-            backgroundColor: notesColorMap[note.note_theme],
+            backgroundColor: notesColorMap[note.note_theme] + 'aa',
           }"
           @click="openNote(note)"
         >
@@ -88,16 +88,16 @@
     :x="note.position.x"
     :y="note.position.y"
     :title="note.note_name"
+    :theme_color="notesColorMap[note.note_theme]"
+    :theme_text="note.text_theme"
     @change="changePosition($event, note)"
     @close="closeNote(note)"
     v-show="note.position.isOpen"
   >
     <div
       class="notes-content"
-      :style="{ background: notesColorMap[note.note_theme], color: note.text_theme }"
     >
-      <h3>{{ note.note_name }}</h3>
-      <p>{{ note.note_content }}</p>
+      <p style="color: black" >{{ note.note_content }}</p>
     </div>
   </fb-window>
 </template>
@@ -278,7 +278,9 @@ export default {
   margin-right: 10px;
 }
 .notes {
-  background: white;
+  background: rgb(195,34,160, 0.7);
+  background: linear-gradient(126deg, rgba(195,34,160,0.7) 0%, rgba(253,187,45,0.7) 100%);
+  backdrop-filter: blur(5px);
   padding: 10px;
   width: 400px;
   max-height: 600px;
@@ -293,7 +295,7 @@ export default {
     h3 {
       font-size: 18px;
       font-weight: bold;
-      color: var(--blue-color);
+      color: white;
     }
     button {
       font-size: 12px;
@@ -310,6 +312,7 @@ export default {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    border-radius: 12px;
     cursor: pointer;
     &:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -330,6 +333,7 @@ export default {
       display: flex;
       align-items: center;
       backdrop-filter: blur(5px);
+      border-radius: 11px;
       .fa {
         font-size: 14px;
         cursor: pointer;
@@ -379,15 +383,9 @@ export default {
     }
   }
   &-content {
-    padding: 16px;
-    border-radius: 8px;
+    padding: 8px;
     height: 100%;
     overflow-y: auto;
-    h3 {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
     p {
       font-size: 12px;
       font-family: monospace;
