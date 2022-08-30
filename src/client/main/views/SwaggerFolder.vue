@@ -3,7 +3,7 @@
     <div class="container folder">
       <nav class="v-center space-between">
         <h3>Projects</h3>
-        <p-btn color="orange" @click="overlay = true"> ADD NEW PROJECT</p-btn>
+        <p-btn color="orange" light @click="overlay = true"> ADD NEW PROJECT</p-btn>
       </nav>
       <div class="projects">
         <div class="project" v-for="project in folders" :key="project.id">
@@ -90,7 +90,6 @@ export default {
 
 <style lang="scss" scoped>
 .swagger {
-  background: rgb(255, 255, 255);
   height: calc(100vh - 40px);
 }
 .container {
@@ -103,14 +102,15 @@ export default {
     h3 {
       font-size: 24px;
       font-weight: bold;
-      color: var(--black-color);
+      color: var(--white-color);
     }
   }
   .overlay section {
-    background: var(--white-color);
+    background: var(--bg-color);
     border-radius: 8px;
     padding: 20px;
     width: 300px;
+    color: var(--white-color);
   }
 }
 .project {
@@ -118,16 +118,16 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: rgb(235, 235, 235);
+  background-color: rgba(5, 98, 62, 0.7);
   margin-top: 20px;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   h3 {
     font-size: 16px;
-    color: var(--black-color);
+    color: var(--white-color);
     cursor: pointer;
     &:hover {
-      color: var(--blue-color);
+      color: var(--yellow-color);
     }
   }
 }

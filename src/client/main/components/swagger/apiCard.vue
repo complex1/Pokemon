@@ -26,14 +26,14 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect x="10" y="2" width="5" height="21" fill="#00303D" />
+                  <rect x="10" y="2" width="5" height="21" fill="#fff" />
                   <rect
                     x="22.9998"
                     y="10"
                     width="5"
                     height="21"
                     transform="rotate(89.7176 22.9998 10)"
-                    fill="#00303D"
+                    fill="#fff"
                   />
                 </svg>
               </div>
@@ -44,7 +44,7 @@
               >
                 <div v-if="header.isCustom">
                   <input
-                    style="width: 200px"
+                    style="width: 200px; margin-right: 10px;"
                     type="text"
                     v-model="headers[index].name"
                     :disabled="!edit"
@@ -282,26 +282,29 @@ export default {
 <style scoped lang="scss">
 @import "@var";
 .api-card {
+  & > div {
+    border-radius: 6px;
+  }
   &-get {
-    background: rgba($opt-2, 0.1);
+    background: rgba($opt-2, 0.2);
     .method-badge {
       background: $opt-2;
     }
   }
   &-post {
-    background: rgba($success, 0.15);
+    background: rgba($success, 0.2);
     .method-badge {
       background: $success;
     }
   }
   &-put {
-    background: rgba($warning, 0.15);
+    background: rgba($warning, 0.2);
     .method-badge {
       background: $warning;
     }
   }
   &-delete {
-    background: rgba($alert, 0.15);
+    background: rgba($alert, 0.2);
     .method-badge {
       background: $alert;
     }
@@ -334,6 +337,7 @@ export default {
         border: 1px solid $text-light;
         padding: 4px 8px;
         width: 300px;
+        background: transparent;
         &:focus {
           border: 1px solid $opt-2;
           outline: none;

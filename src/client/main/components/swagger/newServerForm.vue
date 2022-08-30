@@ -129,6 +129,7 @@ export default {
 
 <style lang="scss" scoped>
 form {
+  background: var(--bg-color) !important;
   padding: 20px;
 }
 </style>

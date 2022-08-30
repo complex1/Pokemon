@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   z-index: 999999999999;
+  backdrop-filter: blur(4px);
   & > div,form {
     min-height: 100px;
     min-width: 100px;

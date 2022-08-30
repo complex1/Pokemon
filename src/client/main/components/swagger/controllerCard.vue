@@ -1,6 +1,6 @@
 <template>
-  <div class="controller p-4 mb-4 round bg-ele-2">
-    <div class="v-center space-between">
+  <div class="controller p-4 mb-4 round bg-ele-1">
+    <div class="v-center space-between detail">
       <h3 class="tx-x-lg tx-light pointer" @click="open = !open" v-html="getName(controller.name)" ></h3>
       <p class="tx-small">{{controller.description}}</p>
     </div>
@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 @import '@var';
 .controller {
-  background: rgba($light-gray, 0.7);
+  background: var(--bg-color-2);
   h3:hover {
     text-decoration: underline;
     color: $opt-2;

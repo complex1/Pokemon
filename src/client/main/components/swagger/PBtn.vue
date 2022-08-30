@@ -26,7 +26,7 @@ export default {
       if (this.hover) {
         return {
           color: this.color ? colorMap[this.color] || colorMap.default : colorMap.default,
-          background: colorMap.white,
+          background: '#ffffffcc',
           borderColor: this.color ? colorMap[this.color] || colorMap.default : colorMap.default
         }
       } else {

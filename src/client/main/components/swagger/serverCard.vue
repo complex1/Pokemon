@@ -94,6 +94,7 @@ export default {
   height: 250px;
   min-width: 230px;
   border-radius: 8px;
+  background-color: var(--bg-color-2);
   button.fa {
     border: 0px solid;
     font-size: 16px;
@@ -105,7 +106,7 @@ export default {
     background: transparent;
     border-radius: 50%;
     margin: 5px;
-    box-shadow: 2px 2px 4px rgb(126, 123, 123);
+    box-shadow: 0px 0px 6px rgb(126, 123, 123);
   }
   .status-chip {
     position: absolute;

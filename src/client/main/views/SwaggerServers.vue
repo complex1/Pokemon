@@ -64,7 +64,6 @@ export default {
 
 <style lang="scss" scoped>
 .swagger {
-  background: rgb(255, 255, 255);
   height: calc(100vh - 40px);
 }
 .container {
@@ -83,6 +82,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(4px);
   & > form {
     background: white;
     border-radius: 8px;
