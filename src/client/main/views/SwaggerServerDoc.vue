@@ -39,6 +39,7 @@
         <api-docs v-else :apiDocs="apiDoc" />
       </div>
     </div>
+    <app-bar />
   </div>
 </template>
 
@@ -52,6 +53,7 @@ import noServer from "../components/swagger/noServer.vue";
 import ServerError from "../components/swagger/serverError.vue";
 import swaggerDocFormatter from "../helper/swagger-doc";
 import openapiDocFormatter from "../helper/openapi-doc.js";
+import AppBar from '../components/common/appBar.vue';
 export default {
   components: {
     breadcrum,
@@ -60,6 +62,7 @@ export default {
     noServer,
     ServerError,
     ApiDocs,
+    AppBar,
   },
   name: "SwaggerServerDoc",
   data() {

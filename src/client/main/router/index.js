@@ -21,6 +21,11 @@ const routes = [
     path: '/pikachu/project/:projectId/server/:serverId',
     name: 'ServerDoc',
     component: () => import('../views/SwaggerServerDoc.vue')
+  },
+  {
+    path: '/taskmanage',
+    name: 'TaskManage',
+    component: () => import('../views/TaskManager.vue')
   }
 ]
 

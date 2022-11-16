@@ -18,6 +18,7 @@
     <div class="modal" v-if="overlay">
       <new-server-form @close="overlay = false" />
     </div>
+    <app-bar />
   </div>
 </template>
 

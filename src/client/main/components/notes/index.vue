@@ -97,7 +97,7 @@
     <div
       class="notes-content"
     >
-      <p style="color: black" >{{ note.note_content }}</p>
+      <p style="color: black" v-html="note.note_content" ></p>
     </div>
   </fb-window>
 </template>

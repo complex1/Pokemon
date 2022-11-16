@@ -21,6 +21,7 @@ const chatRouter = require('./Router/chatRouter');
 const pikachuRouter = require('./Router/pikachuRouter');
 const proxyRouter = require('./Router/proxyRouter')
 const notesRouter = require('./Router/notesRouter');
+const taskRouter = require('./Router/taskRouter');
 const socket = require('./Socket/index');
 
 const server = express();
@@ -42,6 +43,7 @@ server.use(routerConfig.chat.basePath, requestLogger, chatRouter);
 server.use(routerConfig.pikachu.basePath, requestLogger, pikachuRouter);
 server.use(routerConfig.proxy.basePath, requestLogger, proxyRouter)
 server.use(routerConfig.notes.basePath, requestLogger, notesRouter);
+server.use(routerConfig.task.basePath, requestLogger, taskRouter);
 server.get('/*', proxyMiddleware);
 
 

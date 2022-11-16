@@ -159,6 +159,36 @@ module.exports = {
             }
             );
         })();
+
+        (function () {
+            appLog('Creating TASK table...');
+            const createTaskTable = `CREATE TABLE IF NOT EXISTS Task (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            created_user INTEGER NOT NULL,
+            assigne_user INTEGER,
+            title TEXT NOT NULL,
+            detail TEXT NOT NULL,
+            preority TEXT NOT NULL,
+            child TEXT,
+            parent TEXT,
+            type TEXT NOT NULL,
+            state TEXT NOT NULL,
+            completed_at DATETIME,
+            done_by DATETIME,
+            comments TEXT,
+            extras TEXT,
+            task_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            task_updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (created_user) REFERENCES User(id)
+            );`;
+            sqlite.run(createTaskTable, (err) => {
+                if (err) {
+                    appLog(err.message);
+                }
+                appLog('Notes table created');
+            }
+            );
+        })();
     }
 
 }

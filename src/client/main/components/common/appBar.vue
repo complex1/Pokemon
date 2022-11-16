@@ -2,7 +2,7 @@
   <div class="apps">
     <svg
       width="21"
-      height="91"
+      height="40"
       viewBox="0 0 21 91"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -29,10 +29,12 @@
     <div class="apps-icon" @click="$router.push('/pikachu')">
       <img src="@image/pikachu.png" alt="" />
     </div>
-    
+    <div class="apps-icon" @click="$router.push('/taskmanage')">
+      <img src="@image/pikachu.png" alt="" />
+    </div>
     <svg
       width="21"
-      height="91"
+      height="40"
       viewBox="0 0 21 91"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -67,15 +69,17 @@ export default {};
 .apps {
   position: fixed;
   bottom: 20px;
-  left: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   right: 10px;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
   &-icon {
-    width: 60px;
-    height: 60px;
+    width: 36px;
+    height: 36px;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(4px);
     border-radius: 5.6px;
@@ -90,7 +94,7 @@ export default {};
     &:hover {
       background: rgba(255, 255, 255, 0.6);
       box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.25),
-      4px 4px 8px rgba(255, 255, 255, 0.29);
+        4px 4px 8px rgba(255, 255, 255, 0.29);
       transform: scale(1.2);
     }
     & ~ & {

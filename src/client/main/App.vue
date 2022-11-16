@@ -1,6 +1,6 @@
 <template>
   <navbar />
-  <router-view/>
+  <router-view class="view" />
 </template>
 <script>
 import navbar from './components/common/navbar.vue'
@@ -18,5 +18,9 @@ export default {
 <style lang="scss">
 body {
       overflow: hidden;
+}
+.view {
+      height: calc(100vh - 150px);
+      overflow: auto;
 }
 </style>

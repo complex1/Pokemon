@@ -34,6 +34,10 @@ module.exports = {
         updateNote: '/updatenote',
         deleteNote: '/deletenote',
         getNotes: '/getnotes',
+    },
+    task: {
+        basePath: '/task',
+        createNewTask: '/createtask'
     }
 
 }

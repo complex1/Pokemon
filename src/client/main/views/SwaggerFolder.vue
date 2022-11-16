@@ -49,15 +49,17 @@
         </section>
       </div>
     </div>
+    <app-bar />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import AppBar from '../components/common/appBar.vue';
 import PBtn from "../components/swagger/PBtn.vue";
 export default {
   name: "Swagger",
-  components: { PBtn },
+  components: { PBtn, AppBar },
   data() {
     return {
       overlay: false,
